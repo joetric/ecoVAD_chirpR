@@ -23,7 +23,7 @@ In keeping with the license requirements this version of ecoVAD is redistributed
 ### Command Line (CLI)
 ```bash
 # Clone the repository
-git clone https://github.com/joetric/ecoVAD_chirpR
+git clone https://github.com/joetric/ecoVAD_chirpR # change for fork or PR
 cd ecoVAD_chirpR
 
 # Run setup script
@@ -34,7 +34,7 @@ python setup.py
 (Put this in a new notebook)
 ```python
 # Clone the repository
-!git clone https://github.com/joetric/ecoVAD_chirpR
+!git clone https://github.com/joetric/ecoVAD_chirpR # change for fork or PR
 %cd ecoVAD_chirpR
 
 # Run setup script
