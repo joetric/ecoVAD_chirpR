@@ -18,6 +18,29 @@ In keeping with the license requirements this version of ecoVAD is redistributed
 
 [cc-by-nc-sa]: http://creativecommons.org/licenses/by-nc-sa/4.0/
 
+## Installation
+
+### Command Line (CLI)
+```bash
+# Clone the repository
+git clone https://github.com/joetric/ecoVAD_chirpR
+cd ecoVAD_chirpR
+
+# Run setup script
+python setup.py
+```
+
+### Google Colab
+(Put this in a new notebook)
+```python
+# Clone the repository
+!git clone https://github.com/joetric/ecoVAD_chirpR
+%cd ecoVAD_chirpR
+
+# Run setup script
+!python setup.py
+```
+
 ## Change list
 - Removed Docker
 - Removed poetry
