@@ -41,7 +41,13 @@ python setup.py
 !python setup.py
 ```
 
-## Change list
+## Changes
+### March 2026
+- Created setup.py
+- Updated requirements.txt
+- Added setup examples to README
+
+### March 2023
 - Removed Docker
 - Removed poetry
 - Created requirements.txt
