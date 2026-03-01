@@ -1,16 +1,14 @@
 #!/usr/bin/env python3
 """
 Setup script for ecoVAD_chirpR
-Intended to be placed in project directory. ecoVAD will be added as a subdirectory.
+Run this from within the cloned repository directory
 """
 import os
 from pathlib import Path
 import subprocess
 
 # Configuration
-PROJ = Path('/content/drive/MyDrive/laridae')
-REPO_URL = 'https://github.com/joetric/ecoVAD_chirpR'
-REPO_LOCAL = PROJ / 'ecoVAD_chirpR'
+REPO_LOCAL = Path.cwd()  # Current directory (assumes you're already in the repo)
 ASSETS_DIR = REPO_LOCAL / 'assets'
 
 def setup_environment():
@@ -19,24 +17,20 @@ def setup_environment():
         from google.colab import drive
         print("Running in Google Colab")
         drive.mount('/content/drive')
-        return PROJ
     except ImportError:
         print("Running locally")
-        return Path(__file__).parent.absolute()
 
 def main():
-    base_path = setup_environment()
-    print(f"Working directory: {base_path}")
-    
-    # Clone repo (ignore if exists)
-    print("Cloning repository...")
-    os.chdir(PROJ)
-    subprocess.run(["git", "clone", REPO_URL], capture_output=True)
-    os.chdir(REPO_LOCAL)
+    setup_environment()
+    print(f"Setting up: {REPO_LOCAL}")
     
     # Install requirements
-    print("Installing requirements...")
-    subprocess.run(["pip", "install", "-q", "-r", "requirements.txt"], check=True)
+    req_file = REPO_LOCAL / "requirements.txt"
+    if req_file.exists():
+        print("Installing requirements...")
+        subprocess.run(["pip", "install", "-q", "-r", str(req_file)], check=True)
+    else:
+        print(f"Warning: {req_file} not found!")
     
     # Download assets
     if not ASSETS_DIR.exists():
@@ -44,10 +38,11 @@ def main():
         subprocess.run(
             'wget https://osf.io/yvdhf/download -O assets.zip && unzip assets.zip && rm assets.zip',
             shell=True,
+            cwd=str(REPO_LOCAL),
             check=True
         )
     else:
-        print("Assets already downloaded. If there's an issue, redownload manually.")
+        print("Assets already downloaded.")
     
     print("Setup complete!")
 
